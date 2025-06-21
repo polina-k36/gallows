@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <div class="account">
-        <a href="#" class="account__link">войти/зарегистрироваться</a>
+    <div data-signin class="account">
+        <a data-signin href="#" class="account__link">войти/зарегистрироваться</a>
         <div class="account__img"><!-- <img src="" alt="avatar"> --></div>
     </div>
 
@@ -18,9 +18,46 @@
         <h1 class="title">Виселица</h1>
         <a href="play.html" class="btn">Играть</a>
         <button class="btn">Что-то</button>
-        <button class="btn">Привила игры</button>
+        <button data-rule class="btn">Привила игры</button>
     </div>
     <img class="cat" src="../icon/cat.svg" alt="cat">
+
+    <div class="overlay overlay-signIn">
+        <div class="modal">
+            <div class="modal__close">&times;</div>
+            <h2 class="title title-modal">Виселица</h2>
+            <input type="text" placeholder="Введите логин">
+            <input type="text" placeholder="Введите пароль">
+            <button data-answer class="btn btn-modal">Войти</button>
+        </div>
+    </div>
+    <div class="overlay overlay-rule">
+        <div class="modal">
+            <div class="modal__close">&times;</div>
+            <h2 class="title title-modal">Виселица</h2>
+            <div class="modal__rule">
+                Игра «Виселица» — это битва умов и букв! Один загадывает слово. Другой
+                начинает тыкать по алфавиту, пытаясь угадать буквы. Если угадал — молодец, буквы появляются на своих
+                местах, если
+                промахнулся — на виселице рисуется новая часть человечка. Как только человечек полностью готов — ты
+                «повешен». Отгадай слово раньше, чем тебя «повесят», и ты чемпион! Весело, просто и азартно —
+                идеальный способ
+                проверить свою смекалку и словарный запас.
+            </div>
+            <a href="play.html" class="btn btn-modal">Играть</a>
+        </div>
+    </div>
+    <div class="overlay overlay-answer">
+        <div class="modal">
+            <div class="modal__close">&times;</div>
+            <h2 class="title title-modal">Виселица</h2>
+            <div class="modal__rule">
+                Вы успешно вошли в аккаунт. Благодарим за доверие к нам и к нашей игре!
+            </div>
+            <a href="play.html" class="btn btn-modal">Играть</a>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
