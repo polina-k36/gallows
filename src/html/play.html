@@ -32,13 +32,11 @@
 
         </div>
         <div class="game__word">
-            <div class="game__word_letter game__word_letter-unlock">п</div>
-            <div class="game__word_letter">р</div>
         </div>
         <div class="game__keyboard">
             <div class="game__keyboard-wrapper">
-                <div class="game__keyboard_key game__keyboard_key-wrong">ё</div>
-                <div class="game__keyboard_key game__keyboard_key-right">й</div>
+                <div class="game__keyboard_key">ё</div>
+                <div class="game__keyboard_key">й</div>
                 <div class="game__keyboard_key">ц</div>
                 <div class="game__keyboard_key">у</div>
                 <div class="game__keyboard_key">к</div>
@@ -77,6 +75,54 @@
             </div>
         </div>
     </div>
+
+    <div class="overlay">
+        <div class="modal modal-gameOver">
+            <h2 class="title title-modal">Виселица</h2>
+            <div class="modal__rule modal__result">
+
+            </div>
+            <a data-play href="play.html" class="btn btn-modal">Ещё раз</a>
+            <a data-play href="main.html" class="btn btn-modal">На главную</a>
+        </div>
+        <div class="modal modal-selectWords">
+            <h2 class="title title-modal">Виселица</h2>
+            <div class="modal__rule modal__result"></div>
+            <div class="modal__checkboxes">
+                <div><input type="checkbox" id="all" name="all">
+                    <label for="all">Все</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="animals" name="animals">
+                    <label for="animals">Животные</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="fruits" name="fruits">
+                    <label for="fruits">Фрукты</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="cities" name="cities">
+                    <label for="cities">Города</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="professions" name="professions">
+                    <label for="professions">Профессии</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="transport" name="transport">
+                    <label for="transport">Транспорт</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="colors" name="colors">
+                    <label for="colors">Цвета</label>
+                </div>
+            </div>
+            <button data-inputWord class="btn btn-modal">Свое слово</button>
+            <button data-startGame class="btn btn-modal">Начать игру</button>
+        </div>
+    </div>
+
+    <script src="../js/play.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Виселица</title>
     <link rel="stylesheet" href="../css/style.min.css">
 </head>
 
@@ -16,23 +16,21 @@
 
     <div class="content">
         <h1 class="title">Виселица</h1>
-        <a href="play.html" class="btn">Играть</a>
+        <a data-play href="play.html" class="btn">Играть</a>
         <button class="btn">Что-то</button>
         <button data-rule class="btn">Привила игры</button>
     </div>
     <img class="cat" src="../icon/cat.svg" alt="cat">
 
-    <div class="overlay overlay-signIn">
-        <div class="modal">
+    <div class="overlay">
+        <div class="modal modal-signIn">
             <div class="modal__close">&times;</div>
             <h2 class="title title-modal">Виселица</h2>
             <input type="text" placeholder="Введите логин">
             <input type="text" placeholder="Введите пароль">
             <button data-answer class="btn btn-modal">Войти</button>
         </div>
-    </div>
-    <div class="overlay overlay-rule">
-        <div class="modal">
+        <div class="modal modal-rule">
             <div class="modal__close">&times;</div>
             <h2 class="title title-modal">Виселица</h2>
             <div class="modal__rule">
@@ -44,17 +42,15 @@
                 идеальный способ
                 проверить свою смекалку и словарный запас.
             </div>
-            <a href="play.html" class="btn btn-modal">Играть</a>
+            <a data-play href="play.html" class="btn btn-modal">Играть</a>
         </div>
-    </div>
-    <div class="overlay overlay-answer">
-        <div class="modal">
+        <div class="modal modal-answer">
             <div class="modal__close">&times;</div>
             <h2 class="title title-modal">Виселица</h2>
             <div class="modal__rule">
                 Вы успешно вошли в аккаунт. Благодарим за доверие к нам и к нашей игре!
             </div>
-            <a href="play.html" class="btn btn-modal">Играть</a>
+            <a data-play href="play.html" class="btn btn-modal">Играть</a>
         </div>
     </div>
     <script src="../js/main.js"></script>
