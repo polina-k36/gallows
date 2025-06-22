@@ -76,14 +76,18 @@ const modalSelectWords = document.querySelector('.modal-selectWords'),
       checkboxes = modalSelectWords.querySelectorAll('input'),
       allCheck = modalSelectWords.querySelector('#all'),
       ownWordButton = document.querySelector('[data-inputWord]'),
-      startGameButton = document.querySelector('[data-startGame]');
-
+      startGameButton = document.querySelector('[data-startGame]'),
+      ownStartGameButton = document.querySelector('[data-ownStartGame]'),
+      modalEnterWord = document.querySelector('.modal-enterWord');
+      
 const letterWrapper = document.querySelector('.game__word');
 
 const keysKeyboard = document.querySelectorAll('.game__keyboard_key'),
       modalGameOver = document.querySelector('.modal-gameOver'),
       gallowsPart = [...document.querySelector('.game__gallows').children, 
-                     ...document.querySelector('.game__gallows-body').children];
+                     ...document.querySelector('.game__gallows-body').children],
+      backArrow = document.querySelector('.modal__arr');
+
 let attempts = 0; //количество попыток
 let unlockLetter = 0; //количество открытых букв
 
@@ -106,6 +110,11 @@ allCheck.addEventListener('change', () => {
     }
 });
 
+ownWordButton.addEventListener('click', () => {
+    modalSelectWords.style.display = 'none';
+    modalEnterWord.style.display = 'flex';
+});
+
 startGameButton.addEventListener('click', () => {
     checkboxes.forEach(check => {
         if (check.checked){
@@ -118,6 +127,24 @@ startGameButton.addEventListener('click', () => {
     }
     modalSelectWords.style.display = 'none';
     overlay.style.display = 'none';
+    renderWord();
+    keyPress(letterWrapper.querySelectorAll('.game__word_letter'));
+});
+
+backArrow.addEventListener('click', () => {
+    modalSelectWords.style.display = 'flex';
+    modalEnterWord.style.display = 'none';
+});
+
+ownStartGameButton.addEventListener('click', () => {
+    const word = document.querySelector('#word').value.toLowerCase();
+    if (word.length !== 0){
+        selectWords = [word];
+    }else {
+        alert('Введите что то в поле для слова. Иначе игра не начнется.');
+    }
+    overlay.style.display = 'none';
+    modalEnterWord.style.display = 'none';
     renderWord();
     keyPress(letterWrapper.querySelectorAll('.game__word_letter'));
 })
