@@ -58,10 +58,7 @@ const words = {
       'песочный', 'терракотовый','хаки'
       
     ]
-  };
-  
-
-
+};
 words.all = [
 ...words.animals,
 ...words.fruits,
@@ -136,10 +133,20 @@ backArrow.addEventListener('click', () => {
     modalEnterWord.style.display = 'none';
 });
 
+let ownWord;
+
+document.querySelector('#word').addEventListener('input', e => {
+    const checkRus = /^[\u0400-\u04FF]+$/;
+    if (checkRus.test(e.target.value)){
+        ownWord = e.target.value.toLowerCase();
+    } else {
+        e.target.value = e.target.value.slice(0, -1); 
+    }
+})
+
 ownStartGameButton.addEventListener('click', () => {
-    const word = document.querySelector('#word').value.toLowerCase();
-    if (word.length !== 0){
-        selectWords = [word];
+    if (ownWord.length !== 0){
+        selectWords = [ownWord];
     }else {
         alert('Введите что то в поле для слова. Иначе игра не начнется.');
     }
@@ -161,6 +168,15 @@ function renderWord(){
 }
 
 //взаимодействие с клавиатурой
+
+document.addEventListener('keydown', event => {
+    keysKeyboard.forEach(key => {
+        if (key.textContent === event.key){
+            key.click();
+        }
+    });
+});
+
 
 function keyPress(letters) {
     function onClickHandler() {

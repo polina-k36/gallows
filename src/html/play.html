@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Виселица</title>
-    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/addstile.min.css">
 </head>
 
 <body>
     <div class="account account-play">
         <a href="main.html" class="title title-small">Виселица</a>
-        <div>
+        <!--         <div>
             <a href="#" class="account__link">войти/зарегистрироваться</a>
-            <div class="account__img"><!-- <img src="" alt="avatar"> --></div>
-        </div>
+            <div class="account__img"><img src="" alt="avatar">
+    </div>
+    </div> -->
     </div>
     <div class="game">
         <div class="game__gallows">
@@ -79,9 +80,7 @@
     <div class="overlay">
         <div class="modal modal-gameOver">
             <h2 class="title title-modal">Виселица</h2>
-            <div class="modal__rule modal__result">
-
-            </div>
+            <div class="modal__rule modal__result"></div>
             <a data-play href="play.html" class="btn btn-modal">Ещё раз</a>
             <a data-play href="main.html" class="btn btn-modal">На главную</a>
         </div>
@@ -93,7 +92,6 @@
         </div>
         <div class="modal modal-selectWords">
             <h2 class="title title-modal">Виселица</h2>
-            <div class="modal__rule modal__result"></div>
             <div class="modal__checkboxes">
                 <div><input type="checkbox" id="all" name="all">
                     <label for="all">Все</label>
@@ -123,7 +121,7 @@
                     <label for="colors">Цвета</label>
                 </div>
             </div>
-            <button data-inputWord class="btn btn-modal">Свое слово</button>
+            <button data-inputWord class="btn btn-modal">Своё слово</button>
             <button data-startGame class="btn btn-modal">Начать игру</button>
         </div>
     </div>
