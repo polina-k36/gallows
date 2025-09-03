@@ -9,7 +9,9 @@ const modalRule = document.querySelector('.modal-rule'),
       targetPlay = document.querySelectorAll('[data-play]'),
       closeTargetModal = document.querySelectorAll('.modal__close'),
       overlay = document.querySelector('.overlay'),
-      cat = document.querySelector('.cat');
+      cat = document.querySelector('.cat'),
+      food = document.querySelector('.food_piece'),
+      foodContainer = document.querySelector('.food');;
 
 
 //СДЕЛАТЬ РАБОТУ С МОДАЛЬНЫМИ ОКНАМИ БОЛЕЕ РАЗУМНО
@@ -50,42 +52,66 @@ document.addEventListener('click', e => {
 
 let bottomValue;
 let rightValue;
+let cursorX = 0;
+let cursorY = 0;
 let catMoveUpInterval;
-let catMoveDownInterval;
-cat.addEventListener('click', () => {
-    cat.classList.toggle('cat-sprite');
-    if (cat.classList.contains('cat-sprite')){
-        catMoveUpInterval = setInterval(() => {
-            bottomValue = parseInt(window.getComputedStyle(cat).bottom, 10) || 0;
-            rightValue = parseInt(window.getComputedStyle(cat).right, 10) || 0;
-            cat.style.transform = 'rotate(-50deg)';
-            if (bottomValue <= 450 && rightValue <= 1300) {
-                bottomValue = parseInt(window.getComputedStyle(cat).bottom, 10) || 0;
-                rightValue = parseInt(window.getComputedStyle(cat).right, 10) || 0;
-                cat.style.bottom = (bottomValue + 3) + 'px';
-                cat.style.right = (rightValue + 10) + 'px';
-            } else {
-                clearInterval(catMoveUpInterval);
-                catMoveDownInterval = setInterval(() => {
-                    bottomValue = parseInt(window.getComputedStyle(cat).bottom, 10) || 0;
-                    rightValue = parseInt(window.getComputedStyle(cat).right, 10) || 0;
-                    cat.style.transform = 'rotate(-250deg)';
-                    if (bottomValue >= 20 && rightValue >= 50) {
-                        bottomValue = parseInt(window.getComputedStyle(cat).bottom, 10) || 0;
-                        rightValue = parseInt(window.getComputedStyle(cat).right, 10) || 0;
-                        cat.style.bottom = (bottomValue - 3) + 'px';
-                        cat.style.right = (rightValue - 10) + 'px';
-                    } else {
-                        clearInterval(catMoveDownInterval);
-                        cat.style.transform = 'rotate(-10deg)';
-                        cat.classList.remove('cat-sprite');
-                    }
-                }, 50);
-            }
-        }, 50);
+let handHoldFood = false;
+let catRunForFood = false;
+let catX = 10;
+let catY = 20;
+let catMoveMouse = (event) => {
+    // Получаем координаты мыши относительно окна
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    
+    const dx = cursorX - catX;
+    const dy = cursorY - catY;
+    const speed = 1.5;
+    catX += dx * speed;
+    catY += dy * speed;
+    const catDeg = (Math.atan2(dy, dx) * (180 / Math.PI)); //угол в радианах между курсором и котом перевод в градусы
+    cat.style.left = catX + 'px';
+    cat.style.top = catY + 'px';
+    cat.style.transform = `rotate(${catDeg + 90}deg)`;
+};
+
+let foodMouse = (event) => {
+    const x = event.clientX;
+    const y = event.clientY;
+    food.style.position = 'fixed';
+    food.style.left = x + 'px';
+    food.style.top = y + 'px';
+};
+
+cat.addEventListener('mouseenter', () => {
+    handHoldFood ? catRunForFood = true : catRunForFood = false; 
+    if (catRunForFood) {
+        cat.classList.add('cat-sprite');
+        document.addEventListener('mousemove', catMoveMouse);
     } else {
-        console.log('пушин не бежит');
-        clearInterval(catMoveUpInterval);
-        clearInterval(catMoveDownInterval);
+        document.removeEventListener('mousemove', catMoveMouse);
     }
-})
+});
+
+foodContainer.addEventListener('click', () => {
+    handHoldFood = !handHoldFood;
+    if (handHoldFood) {
+        document.addEventListener('mousemove', foodMouse);
+    } else { 
+        document.removeEventListener('mousemove', foodMouse);
+        document.removeEventListener('mousemove', catMoveMouse);
+        cat.style.transform = 'rotate(-50deg)';
+        cat.style.left = 20 + 'px';
+        cat.style.top = 10  + 'px';
+        food.style.position = 'absolute';
+        food.style.left = 30 + 'px';
+        food.style.top = 15  + 'px';
+        setTimeout(staticCat, 2000);
+    }    
+});
+
+
+function staticCat() {
+    cat.style.transform = 'rotate(130deg)';
+    cat.classList.remove('cat-sprite');
+}

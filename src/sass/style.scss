@@ -180,27 +180,41 @@ a.btn {
 }
 
 .cat {
+    transform-origin: center center;
+    transform: rotate(0deg);
     cursor: pointer;
     position: absolute;
     z-index: -2;
-    bottom: 20px;
-    right: 10px;
+    top: 20px;
+    left: 10px;
     transform: rotate(-10deg);
     background: url('../icon/pushin/cat.png') 0 0 no-repeat;
     width: 190px;
     overflow: hidden;
     /* ширина одного кадра */
     height: 290px;
+    transition: left 2s linear,
+        top 2s linear,
+        bottom 2s linear,
+        right 2s linear,
+        transform 1s linear;
 
     @media screen and (max-width: 567px) {
         display: none;
     }
 
     &-sprite {
-        transform: rotate(-50deg);
-        background: url('../icon/pushin/move-2.png') 0 0;
-        /* спрайт-лист котика */
-        animation: run-cat .6s steps(2) infinite;
+        /* transform: rotate(-50deg); */
+        background: url('../icon/pushin/move-2.png') 0 0 no-repeat;
+        animation:
+            run-cat .6s steps(2) infinite;
+
+    }
+
+    @keyframes move {
+        to {
+            offset-distance: 100%;
+        }
     }
 
     @keyframes run-cat {
@@ -670,5 +684,27 @@ a.btn {
 
     &-enterWord {
         display: none;
+    }
+}
+
+.food {
+    background: url('../icon/food/food.svg') center center / contain no-repeat;
+    width: 220px;
+    height: 180px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    list-style: none;
+
+    margin: 0;
+
+    &_piece {
+        background: url('../icon/food/fish.svg') center center / contain no-repeat;
+        position: absolute;
+        top: 15px;
+        left: 30px;
+        width: 120px;
+        height: 70px;
+        transform: rotate(40deg);
     }
 }
